@@ -8,12 +8,12 @@ data class Bug(
     @SerializedName("file-name") val file_name: String,
     val name: Names,
     val availability: Availabilities,
-    val price: Float,
-    @SerializedName("price-flick") val price_flick: Float,
+    val price: Int,
+    @SerializedName("price-flick") val price_flick: Int,
     @SerializedName("catch-phrase") val catchphrase: String,
     @SerializedName("museum-phrase") val museum_phrase: String,
-    val image_url: String,
-    val icon_url: String
+    @SerializedName("image_uri") val image_url: String,
+    @SerializedName("icon_uri") val icon_url: String
 )
 
 data class Names(

@@ -40,16 +40,16 @@ class DashboardFragment : Fragment() {
 
         val acnhAPI = retrofit.create(ACNHService::class.java)
 
-        acnhAPI.getAllBugs().enqueue(object : Callback<ArrayList<Bug>> {
+        acnhAPI.getAllBugs().enqueue(object : Callback<List<Bug>> {
 
 
-            override fun onFailure(call: Call<ArrayList<Bug>>, t: Throwable) {
+            override fun onFailure(call: Call<List<Bug>>, t: Throwable) {
                 Log.d(TAG, "onFailure: $t")
             }
 
             override fun onResponse(
-                call: Call<ArrayList<Bug>>,
-                response: Response<ArrayList<Bug>>
+                call: Call<List<Bug>>,
+                response: Response<List<Bug>>
             ) {
                 Log.d(TAG, "onResponse: $response")
 
