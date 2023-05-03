@@ -1,5 +1,6 @@
 package com.example.test.ui.dashboard
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,45 +26,23 @@ class DashboardFragment : Fragment() {
     ): View {
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
 
-        val bugList = ArrayList<Bug>()
-
-        val adapter = BugRowItemAdapter(bugList)
-
-        val recyclerView = view.findViewById<RecyclerView>(R.id.bug_recycler_view)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this.context)
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val acnhAPI = retrofit.create(ACNHService::class.java)
-
-        acnhAPI.getAllBugs().enqueue(object : Callback<List<Bug>> {
-
-
-            override fun onFailure(call: Call<List<Bug>>, t: Throwable) {
-                Log.d(TAG, "onFailure: $t")
-            }
-
-            override fun onResponse(
-                call: Call<List<Bug>>,
-                response: Response<List<Bug>>
-            ) {
-                Log.d(TAG, "onResponse: $response")
-
-                val body = response.body()
-                if(body == null){
-                    Log.w(TAG, "Valid response was not received")
-                    return
-                }
-
-                bugList.addAll(body)
-                adapter.notifyDataSetChanged()
-            }
-            })
-
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            // We are in portrait orientation
+            // Load Detail fragment, i.e., replace listview fragment with detail fragment
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.bugListContainer, BuglistFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+        else {
+            // We are in landscape orientation
+            // Load Detail fragment, i.e., replace the current detail fragment
+            // with detail fragment containing the selected item's details
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.BugDetailContainer, BugDetailFragment())
+                .addToBackStack(null)
+                .commit()
+        }
         return view
     }
 
