@@ -1,42 +1,51 @@
-package com.example.test.ui.home
+package com.example.test.ui.dashboard
 
+import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.test.databinding.FragmentHomeBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.test.ACNHService
+import com.example.test.R
+import retrofit2.*
+import retrofit2.converter.gson.GsonConverterFactory
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
+    private val TAG = "FishListFragment"
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            // We are in portrait orientation
+            // Load Detail fragment, i.e., replace listview fragment with detail fragment
+            Log.d(TAG, "onCreateView: ORIENTATION_PORTRAIT")
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fishListContainer, FishlistFragment())
+                .addToBackStack(null)
+                .commit()
         }
-        return root
+        else {
+
+            Log.d(TAG, "onCreateView: ORIENTATION_LANDSCAPE")
+            // We are in landscape orientation
+            // Load Detail fragment, i.e., replace the current detail fragment
+            // with detail fragment containing the selected item's details
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.FishDetailContainer, FishDetailFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+        return view
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+
 }
