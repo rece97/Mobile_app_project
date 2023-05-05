@@ -16,8 +16,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class DashboardFragment : Fragment() {
 
-    private val BASE_URL = "https://acnhapi.com/v1a/"
-
     private val TAG = "BugListFragment"
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,12 +27,15 @@ class DashboardFragment : Fragment() {
         if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
             // We are in portrait orientation
             // Load Detail fragment, i.e., replace listview fragment with detail fragment
+            Log.d(TAG, "onCreateView: ORIENTATION_PORTRAIT")
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.bugListContainer, BuglistFragment())
                 .addToBackStack(null)
                 .commit()
         }
         else {
+
+            Log.d(TAG, "onCreateView: ORIENTATION_LANDSCAPE")
             // We are in landscape orientation
             // Load Detail fragment, i.e., replace the current detail fragment
             // with detail fragment containing the selected item's details

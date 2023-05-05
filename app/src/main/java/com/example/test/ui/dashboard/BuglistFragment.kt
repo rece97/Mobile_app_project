@@ -31,6 +31,7 @@ class BuglistFragment : Fragment() {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_buglist, container, false)
 
+        Log.d(TAG, "onCreateView: BuglistFragment")
         val bugList = ArrayList<Bug>()
 
         val adapter = BugRowItemAdapter(bugList)
@@ -69,7 +70,6 @@ class BuglistFragment : Fragment() {
                 adapter.notifyDataSetChanged()
             }
         })
-
         return view
     }
 
