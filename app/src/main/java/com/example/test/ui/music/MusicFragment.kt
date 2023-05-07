@@ -1,17 +1,20 @@
 package com.example.test.ui.music
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.*
+import com.example.test.MainActivity
 import com.example.test.R
 
 
-class MusicFragment : Fragment() {
+class MusicFragment : Fragment()
+{
 
     var myMediaPlayer : MediaPlayer? = null
 
@@ -32,9 +35,36 @@ class MusicFragment : Fragment() {
             // Starts or resumes playback.
             myMediaPlayer?.start()
         }
+        val myList = listOf("N64 Theme", "New Leaf Theme", "K.K. Slider's Dream")
+        val myAdapter = ArrayAdapter<String>(view.context, android.R.layout.simple_spinner_dropdown_item, myList)
+        view.findViewById<Spinner>(R.id.spinner).adapter = myAdapter
+        view.findViewById<Spinner>(R.id.spinner).onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val item = parent?.getItemAtPosition(position)
+                val appContext = requireContext().applicationContext
+                var preferences = appContext.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+                var songChoice = preferences.getString("songChoice", "N64 Theme")
+                if(!item.toString().equals(songChoice)) {
+                    preferences.edit().putString("songChoice", item.toString()).apply()
 
+                    (activity as MainActivity).updateSong()
+                }
 
+            }
 
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+        }
+
+        val appContext = requireContext().applicationContext
+        var preferences = appContext.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+        var songChoice = preferences.getString("songChoice", "N64 Theme")
+        when (songChoice){
+            "N64 Theme" -> view.findViewById<Spinner>(R.id.spinner).setSelection(0)
+            "New Leaf Theme" -> view.findViewById<Spinner>(R.id.spinner).setSelection(1)
+            "K.K. Slider's Dream" -> view.findViewById<Spinner>(R.id.spinner).setSelection(2)
+        }
         return view
     }
 

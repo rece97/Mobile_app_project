@@ -1,4 +1,4 @@
-package com.example.test.ui.dashboard
+package com.example.test.ui.home
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -7,12 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.test.ACNHService
 import com.example.test.R
-import retrofit2.*
-import retrofit2.converter.gson.GsonConverterFactory
+import com.example.test.ui.dashboard.FishDetailFragment
+import com.example.test.ui.dashboard.FishlistFragment
 
 class HomeFragment : Fragment() {
 

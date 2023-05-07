@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Bug(
     @SerializedName("file-name") val file_name: String,
+    val id: Int,
     val name: Names,
     val availability: Availabilities,
     val price: Int,

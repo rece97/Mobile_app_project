@@ -13,7 +13,7 @@ import com.example.test.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
-
+    var myMediaPlayer : MediaPlayer? = null
     private lateinit var binding: ActivityMainBinding
     //var myMediaPlayer : MediaPlayer? = null
 
@@ -37,7 +37,28 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        if(myMediaPlayer == null){
+            updateSong()
+        }
     }
+    fun updateSong(){
+        if(myMediaPlayer != null)
+        {
+            myMediaPlayer?.stop()
+        }
+        val sharedPreferences = getSharedPreferences("sharedPref", MODE_PRIVATE)
+
+        val songChoice = sharedPreferences.getString("songChoice", "N64 Theme")
+
+        when (songChoice){
+            "N64 Theme" -> myMediaPlayer = MediaPlayer.create(this, R.raw.animalcrossingtheme)
+            "New Leaf Theme" -> myMediaPlayer = MediaPlayer.create(this, R.raw.newleafmain)
+            "K.K. Slider's Dream" -> myMediaPlayer = MediaPlayer.create(this, R.raw.sildersdream)
+        }
+        myMediaPlayer?.start()
+    }
+
+
 
 /*    //A button for Starting sound.
     //If it is the first time, it creates the MediaPlayer object with the song provided

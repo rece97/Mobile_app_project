@@ -13,15 +13,14 @@ import com.bumptech.glide.Glide
 import com.example.test.R
 
 class BugRowItemAdapter(private val bugs: ArrayList<Bug>): RecyclerView.Adapter<BugRowItemAdapter.ViewHolder>() {
-
+    var onItemClick: ((Bug) -> Unit)? = null
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val name = itemView.findViewById<TextView>(R.id.bug_name)
         val price = itemView.findViewById<TextView>(R.id.bug_price)
         val icon = itemView.findViewById<ImageView>(R.id.bug_icon)
         init {
             itemView.setOnClickListener{
-                val selectedItem = adapterPosition
-                //var viewmodel = ViewModelProvider(requireActivity()).get(DashboardViewModel::class.java)
+                onItemClick?.invoke(bugs[adapterPosition])
             }
         }
     }
