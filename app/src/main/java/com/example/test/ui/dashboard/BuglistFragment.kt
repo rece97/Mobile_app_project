@@ -93,7 +93,9 @@ class BuglistFragment : Fragment() {
                     return
                 }
 
-                bugList.addAll(body)
+                val bodyList: List<Bug> = body.sortedWith(compareBy { it.name.name.lowercase() })
+
+                bugList.addAll(bodyList)
                 adapter.notifyDataSetChanged()
             }
         })

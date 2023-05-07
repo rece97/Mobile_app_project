@@ -15,8 +15,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/fish" />
+        app:srcCompat="@drawable/bug" />
 
     <TextView
         android:id="@+id/fish_name"
@@ -34,11 +33,34 @@
         android:id="@+id/fish_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/animal_crossing"
         android:text="TextView"
-        android:textSize="12sp"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/fish_name" />
+
+    <TextView
+        android:id="@+id/fish_rarity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/animal_crossing"
+        android:text="TextView"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/fish_icon"
         app:layout_constraintTop_toBottomOf="@+id/fish_name" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toEndOf="@+id/fish_rarity"
+        app:layout_constraintTop_toBottomOf="@+id/fish_name"
+        app:srcCompat="@drawable/bellsiconblack" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

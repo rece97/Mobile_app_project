@@ -8,13 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.test.ACNHService
 import com.example.test.R
-import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -63,14 +61,36 @@ class FishDetailFragment : Fragment() {
 
                     //set values of TextViews
                     view.findViewById<TextView>(R.id.fish_detail_name).text = body.name.name
+                    view.findViewById<TextView>(R.id.fish_detail_rarity).text = body.availability.rarity
                     view.findViewById<TextView>(R.id.fish_detail_catchphrase).text = body.catchphrase
+
+                    val monthsAvailable = view.findViewById<TextView>(R.id.fish_availability_months)
+                    if(body.availability.isAllYear){
+                        monthsAvailable.text = "Months: All year!"
+                    }
+                    else{
+                        monthsAvailable.text = "Months: ${body.availability.months}"
+                    }
+
+                    val hoursAvailable = view.findViewById<TextView>(R.id.fish_availability_time)
+                    if(body.availability.isAllDay){
+                        hoursAvailable.text = "Hours: All day!"
+                    }
+                    else{
+                        hoursAvailable.text = "Hours: ${body.availability.time}"
+                    }
+
+                    view.findViewById<TextView>(R.id.fish_detail_price).text = body.price.toString()
+                    view.findViewById<TextView>(R.id.fish_detail_price_cj).text = body.price_cj.toString()
+                    view.findViewById<TextView>(R.id.fish_detail_museum_phrase).text = body.museum_phrase
+
                     val context = view.context
 
                     Glide.with(context)
                         .load(body.icon_url)
-                        .placeholder(R.drawable.bug)
+                        .placeholder(R.drawable.fish)
                         .circleCrop()
-                        .into(view.findViewById<ImageView>(R.id.fish_image))
+                        .into(view.findViewById<ImageView>(R.id.fish_detail_image))
                 }
             })
         })

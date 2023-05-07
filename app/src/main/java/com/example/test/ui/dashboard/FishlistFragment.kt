@@ -92,7 +92,9 @@ class FishlistFragment : Fragment() {
                     return
                 }
 
-                fishList.addAll(body)
+                val bodyList: List<Fish> = body.sortedWith(compareBy { it.name.name.lowercase() })
+
+                fishList.addAll(bodyList)
                 adapter.notifyDataSetChanged()
             }
         })

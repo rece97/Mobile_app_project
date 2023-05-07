@@ -1,8 +1,10 @@
 package com.example.test
 
+import android.content.res.Configuration
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
+import android.widget.Spinner
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -37,15 +39,13 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        if(myMediaPlayer == null){
+        if(myMediaPlayer == null || myMediaPlayer?.isPlaying == false){
             updateSong()
         }
     }
     fun updateSong(){
-        if(myMediaPlayer != null)
-        {
-            myMediaPlayer?.stop()
-        }
+        myMediaPlayer?.isLooping = false
+        myMediaPlayer?.stop()
         val sharedPreferences = getSharedPreferences("sharedPref", MODE_PRIVATE)
 
         val songChoice = sharedPreferences.getString("songChoice", "N64 Theme")
@@ -54,8 +54,16 @@ class MainActivity : AppCompatActivity() {
             "N64 Theme" -> myMediaPlayer = MediaPlayer.create(this, R.raw.animalcrossingtheme)
             "New Leaf Theme" -> myMediaPlayer = MediaPlayer.create(this, R.raw.newleafmain)
             "K.K. Slider's Dream" -> myMediaPlayer = MediaPlayer.create(this, R.raw.sildersdream)
+            "Bubblegum K.K." -> myMediaPlayer = MediaPlayer.create(this, R.raw.bubblegumkk)
+            "K.K. Disco" -> myMediaPlayer = MediaPlayer.create(this, R.raw.kkdisco)
+            "Go K.K. Rider!" -> myMediaPlayer = MediaPlayer.create(this, R.raw.gokkrider)
         }
         myMediaPlayer?.start()
+        myMediaPlayer?.isLooping = true
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
     }
 
 

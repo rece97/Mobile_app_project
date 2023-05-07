@@ -27,7 +27,7 @@ class MusicFragment : Fragment()
 
         val view = inflater.inflate(R.layout.fragment_music, container, false)
 
-        val myList = listOf("N64 Theme", "New Leaf Theme", "K.K. Slider's Dream")
+        val myList = listOf("N64 Theme", "New Leaf Theme", "K.K. Slider's Dream", "Bubblegum K.K.", "K.K. Disco", "Go K.K. Rider!")
         val myAdapter = ArrayAdapter<String>(view.context, android.R.layout.simple_spinner_dropdown_item, myList)
         view.findViewById<Spinner>(R.id.spinner).adapter = myAdapter
         view.findViewById<Spinner>(R.id.spinner).onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
@@ -56,6 +56,9 @@ class MusicFragment : Fragment()
             "N64 Theme" -> view.findViewById<Spinner>(R.id.spinner).setSelection(0)
             "New Leaf Theme" -> view.findViewById<Spinner>(R.id.spinner).setSelection(1)
             "K.K. Slider's Dream" -> view.findViewById<Spinner>(R.id.spinner).setSelection(2)
+            "Bubblegum K.K." -> view.findViewById<Spinner>(R.id.spinner).setSelection(3)
+            "K.K. Disco" -> view.findViewById<Spinner>(R.id.spinner).setSelection(4)
+            "Go K.K. Rider!" -> view.findViewById<Spinner>(R.id.spinner).setSelection(5)
         }
         return view
     }

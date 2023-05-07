@@ -1,5 +1,6 @@
 package com.example.test.ui.dashboard
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ class BugRowItemAdapter(private val bugs: ArrayList<Bug>): RecyclerView.Adapter<
         val name = itemView.findViewById<TextView>(R.id.bug_name)
         val price = itemView.findViewById<TextView>(R.id.bug_price)
         val icon = itemView.findViewById<ImageView>(R.id.bug_icon)
+        val rarity = itemView.findViewById<TextView>(R.id.bug_rarity)
         init {
             itemView.setOnClickListener{
                 onItemClick?.invoke(bugs[adapterPosition])
@@ -34,6 +36,7 @@ class BugRowItemAdapter(private val bugs: ArrayList<Bug>): RecyclerView.Adapter<
         val currentItem = bugs[position]
         holder.name.text = currentItem.name.name
         holder.price.text = currentItem.price.toString()
+        holder.rarity.text = currentItem.availability.rarity
 
         val context = holder.itemView.context
 
@@ -42,6 +45,10 @@ class BugRowItemAdapter(private val bugs: ArrayList<Bug>): RecyclerView.Adapter<
             .placeholder(R.drawable.bug)
             .circleCrop()
             .into(holder.icon)
+
+        if(position % 2 == 0){
+            holder.itemView.setBackgroundColor(Color.parseColor("#f5f5f5"))
+        }
     }
 
     override fun getItemCount(): Int {

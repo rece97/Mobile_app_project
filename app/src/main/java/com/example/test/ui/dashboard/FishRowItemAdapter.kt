@@ -1,5 +1,6 @@
 package com.example.test.ui.dashboard
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ class FishRowItemAdapter(private val fish: ArrayList<Fish>): RecyclerView.Adapte
         val name = itemView.findViewById<TextView>(R.id.fish_name)
         val price = itemView.findViewById<TextView>(R.id.fish_price)
         val icon = itemView.findViewById<ImageView>(R.id.fish_icon)
+        val rarity = itemView.findViewById<TextView>(R.id.fish_rarity)
         init {
             itemView.setOnClickListener{
                 onItemClick?.invoke(fish[adapterPosition])
@@ -31,6 +33,7 @@ class FishRowItemAdapter(private val fish: ArrayList<Fish>): RecyclerView.Adapte
         val currentItem = fish[position]
         holder.name.text = currentItem.name.name
         holder.price.text = currentItem.price.toString()
+        holder.rarity.text = currentItem.availability.rarity
 
         val context = holder.itemView.context
 
@@ -39,6 +42,10 @@ class FishRowItemAdapter(private val fish: ArrayList<Fish>): RecyclerView.Adapte
             .placeholder(R.drawable.fish)
             .circleCrop()
             .into(holder.icon)
+
+        if(position % 2 == 0){
+            holder.itemView.setBackgroundColor(Color.parseColor("#f5f5f5"))
+        }
     }
 
     override fun getItemCount(): Int {

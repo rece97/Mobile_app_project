@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">test</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">Animal Crossing Collectable Guide</string>
+    <string name="title_home">Fish</string>
+    <string name="title_dashboard">Bugs</string>
+    <string name="title_notifications">Music</string>
+    <string name="kkslider">Any requests? I can dial up an old favorite, or you can just tell me how you\'re feeling and I\'ll groove on it.</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="navigation_music">Music</string>
