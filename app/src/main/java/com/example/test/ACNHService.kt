@@ -12,11 +12,11 @@ interface ACNHService {
     fun getAllBugs(): Call<List<Bug>>
 
     @GET("bugs/{id}")
-    fun getBug(@Path("id") name: Int): Call<Bug>
+    fun getBug(@Path("id") id: Int): Call<Bug>
 
     @GET("fish")
     fun getAllFish(): Call<List<Fish>>
 
     @GET("fish/{id}")
-    fun getFish(@Path("id") name: Int): Call<Fish>
+    fun getFish(@Path("id") id: Int): Call<Fish>
 }
