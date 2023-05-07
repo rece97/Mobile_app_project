@@ -10,14 +10,14 @@ import com.bumptech.glide.Glide
 import com.example.test.R
 
 class FishRowItemAdapter(private val fish: ArrayList<Fish>): RecyclerView.Adapter<FishRowItemAdapter.ViewHolder>() {
+    var onItemClick: ((Fish) -> Unit)? = null
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val name = itemView.findViewById<TextView>(R.id.fish_name)
         val price = itemView.findViewById<TextView>(R.id.fish_price)
         val icon = itemView.findViewById<ImageView>(R.id.fish_icon)
         init {
             itemView.setOnClickListener{
-                val selectedItem = adapterPosition
-                //var viewmodel = ViewModelProvider(requireActivity()).get(DashboardViewModel::class.java)
+                onItemClick?.invoke(fish[adapterPosition])
             }
         }
     }

@@ -27,14 +27,6 @@ class MusicFragment : Fragment()
 
         val view = inflater.inflate(R.layout.fragment_music, container, false)
 
-        view.findViewById<Button>(R.id.play).setOnClickListener {
-
-            if (myMediaPlayer == null){
-                myMediaPlayer = MediaPlayer.create(view.context, R.raw.animalcrossingtheme)
-            }
-            // Starts or resumes playback.
-            myMediaPlayer?.start()
-        }
         val myList = listOf("N64 Theme", "New Leaf Theme", "K.K. Slider's Dream")
         val myAdapter = ArrayAdapter<String>(view.context, android.R.layout.simple_spinner_dropdown_item, myList)
         view.findViewById<Spinner>(R.id.spinner).adapter = myAdapter

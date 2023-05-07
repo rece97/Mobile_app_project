@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.FishDetailFragment">
+    tools:context=".ui.dashboard.FishDetailFragment" >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/fish_image"
+            android:layout_width="116dp"
+            android:layout_height="124dp"
+            android:src="@drawable/fish"
+            tools:layout_editor_absoluteX="46dp"
+            tools:layout_editor_absoluteY="42dp" />
+
+        <TextView
+            android:id="@+id/fish_detail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/fish_image"
+            tools:layout_editor_absoluteY="51dp" />
+
+        <TextView
+            android:id="@+id/fish_detail_catchphrase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/fish_image"
+            app:layout_constraintTop_toBottomOf="@+id/fish_detail_name" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
