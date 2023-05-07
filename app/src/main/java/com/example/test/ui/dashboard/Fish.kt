@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Fish(
     @SerializedName("file-name") val file_name: String,
+    val id: Int,
     val name: Names,
     val availability: Availabilities,
     val price: Int,
